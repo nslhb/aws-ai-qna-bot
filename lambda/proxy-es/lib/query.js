@@ -265,7 +265,8 @@ async function get_hit(req, res) {
         console.log("Setting topic for " + JSON.stringify(hit))
         // set res topic from document before running handlebars, so that handlebars can access or overwrite it.
          _.set(res, "session.topic", _.get(hit, "t"));
-        if(_.get(hit, "t") && _.get(hit,"label")){
+        
+        if(_.get(hit, "t")){
             if(!res._userInfo){
                 res._userInfo = {}
             }
