@@ -1,0 +1,17 @@
+{
+  "name": "layer-common-modules",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bluebird": "^3.7.2",
+    "bodybuilder": "^2.4.0",
+    "intercept-stdout": "^0.1.2",
+    "is-odd": "^3.0.1"
+  }
+}

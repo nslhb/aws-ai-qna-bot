@@ -21,6 +21,46 @@ module.exports = {
       "Principal": "alexa-appkit.amazon.com"
     }
   },
+  "CommonModulesLayerCodeVersion": {
+    "Type": "Custom::S3Version",
+    "Properties": {
+      "ServiceToken": { "Fn::GetAtt": ["CFNLambda", "Arn"] },
+      "Bucket": { "Ref": "BootstrapBucket" },
+      "Key": { "Fn::Sub": "${BootstrapPrefix}/lambda/common-modules-layer.zip" },
+      "BuildDate": (new Date()).toISOString()
+    }
+  },
+  "CommonModulesLambdaLayer": {
+    "Type": "AWS::Lambda::LayerVersion",
+    "Properties": {
+      "Content": {
+        "S3Bucket": { "Ref": "BootstrapBucket" },
+        "S3Key": { "Fn::Sub": "${BootstrapPrefix}/lambda/common-modules-layer.zip" },
+        "S3ObjectVersion": { "Ref": "CommonModulesLayerCodeVersion" }
+      },
+      CompatibleRuntimes:["nodejs12.x"],
+    }
+  },
+  "AwsSdkLayerCodeVersion": {
+    "Type": "Custom::S3Version",
+    "Properties": {
+      "ServiceToken": { "Fn::GetAtt": ["CFNLambda", "Arn"] },
+      "Bucket": { "Ref": "BootstrapBucket" },
+      "Key": { "Fn::Sub": "${BootstrapPrefix}/lambda/aws-sdk-layer.zip" },
+      "BuildDate": (new Date()).toISOString()
+    }
+  },
+  "AwsSdkLayerLambdaLayer": {
+    "Type": "AWS::Lambda::LayerVersion",
+    "Properties": {
+      "Content": {
+        "S3Bucket": { "Ref": "BootstrapBucket" },
+        "S3Key": { "Fn::Sub": "${BootstrapPrefix}/lambda/aws-sdk-layer.zip" },
+        "S3ObjectVersion": { "Ref": "AwsSdkLayerCodeVersion" }
+      },
+      CompatibleRuntimes:["nodejs12.x"],
+    }
+  },
   "FulfillmentCodeVersion": {
     "Type": "Custom::S3Version",
     "Properties": {
@@ -38,6 +78,8 @@ module.exports = {
         "S3Key": { "Fn::Sub": "${BootstrapPrefix}/lambda/fulfillment.zip" },
         "S3ObjectVersion": { "Ref": "FulfillmentCodeVersion" }
       },
+      "Layers":[{"Ref":"CommonModulesLambdaLayer"},
+                {"Ref":"AwsSdkLayerLambdaLayer"}],
       "Environment": {
         "Variables": Object.assign({
           ES_TYPE: { "Fn::GetAtt": ["Var", "QnAType"] },
@@ -378,4 +420,4 @@ module.exports = {
     }
   }
 }
-
+  
