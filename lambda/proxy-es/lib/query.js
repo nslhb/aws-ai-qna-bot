@@ -256,6 +256,7 @@ async function get_hit(req, res) {
         res['got_hits'] = 0;  // response flag, used in logging / kibana
         
         response = await run_query(req, query_params);
+
         hit = _.get(response, "hits.hits[0]._source");
 
         console.log("No hits response: " + JSON.stringify(hit))
@@ -307,8 +308,11 @@ async function get_hit(req, res) {
                 _.set(hit, "a", _.get(res,"message",""));
                 var markdown = _.get(res,"session.appContext.altMessages.markdown","");
                 var ssml = _.get(res,"session.appContext.altMessages.ssml","");
+                var card = _.get(res,"card",{})
                 _.set(hit, "alt.markdown", markdown);
                 _.set(hit, "alt.ssml", ssml);
+                _.set(hit,"r",card)
+          
             }
             _.set(hit,"l","") ;
             _.set(hit,"args",[]) ;
