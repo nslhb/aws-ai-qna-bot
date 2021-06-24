@@ -40,44 +40,25 @@ module.exports=
       CompatibleRuntimes:["nodejs12.x"],
     }
   },
-//   "EsProxyModuleLayerCodeVersion": {
-//     "Type": "Custom::S3Version",
-//     "Properties": {
-//       "ServiceToken": { "Fn::GetAtt": ["CFNLambda", "Arn"] },
-//       "Bucket": { "Ref": "BootstrapBucket" },
-//       "Key": { "Fn::Sub": "${BootstrapPrefix}/lambda/esproxy-modules-layer.zip" },
-//       "BuildDate": (new Date()).toISOString()
-//     }
-//   },
-//   "EsProxyModuleLambdaLayer": {
-//     "Type": "AWS::Lambda::LayerVersion",
-//     "Properties": {
-//       "Content": {
-//         "S3Bucket": { "Ref": "BootstrapBucket" },
-//         "S3Key": { "Fn::Sub": "${BootstrapPrefix}/lambda/esproxy-modules-layer.zip" },
-//         "S3ObjectVersion": { "Ref": "EsProxyModuleLayerCodeVersion" }
-//       },
-//       CompatibleRuntimes:["nodejs12.x"],
-//     }
-//   },
-//   "ProxyESLayerCodeVersion": {
-//     "Type": "Custom::S3Version",
-//     "Properties": {
-//       "ServiceToken": { "Fn::GetAtt": ["CFNLambda", "Arn"] },
-//       "Bucket": { "Ref": "BootstrapBucket" },
-//       "Key": { "Fn::Sub": "${BootstrapPrefix}/lambda/proxy-es-layer.zip" },
-//       "BuildDate": (new Date()).toISOString()
-//     }
-//   },
-//   "ProxyESLayerLambdaLayer": {
-//     "Type": "AWS::Lambda::LayerVersion",
-//     "Properties": {
-//       "Content": {
-//         "S3Bucket": { "Ref": "BootstrapBucket" },
-//         "S3Key": { "Fn::Sub": "${BootstrapPrefix}/lambda/proxy-es-layer.zip" },
-//         "S3ObjectVersion": { "Ref": "ProxyESLayerCodeVersion" }
-//       },
-//       CompatibleRuntimes:["nodejs12.x"],
-//     }
-//   }
+  "CfnLambdaLayerCodeVersion": {
+    "Type": "Custom::S3Version",
+    "Properties": {
+      "ServiceToken": { "Fn::GetAtt": ["CFNLambda", "Arn"] },
+      "Bucket": { "Ref": "BootstrapBucket" },
+      "Key": { "Fn::Sub": "${BootstrapPrefix}/lambda/cfn-lambda-layer.zip" },
+      "BuildDate": (new Date()).toISOString()
+    }
+  },
+  "CfnLambdaLayer": {
+    "Type": "AWS::Lambda::LayerVersion",
+    "Properties": {
+      "Content": {
+        "S3Bucket": { "Ref": "BootstrapBucket" },
+        "S3Key": { "Fn::Sub": "${BootstrapPrefix}/lambda/cfn-lambda-layer.zip" },
+        "S3ObjectVersion": { "Ref": "CfnLambdaLayerCodeVersion" }
+      },
+      CompatibleRuntimes:["nodejs12.x"],
+    }
+  },
+
 }

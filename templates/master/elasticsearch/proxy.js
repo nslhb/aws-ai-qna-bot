@@ -16,8 +16,9 @@ module.exports={
             }
         },
         "Layers":[{"Ref":"AwsSdkLayerLambdaLayer"},
-                  {"Ref":"CommonModulesLambdaLayer"}],
-        "Handler": "index.resource",
+                  {"Ref":"CommonModulesLambdaLayer"},
+                  {"Ref":"CfnLambdaLayer"}],
+        "Handler": "resource.handler",
         "MemorySize": "1408",
         "Role": {"Fn::GetAtt": ["ESProxyLambdaRole","Arn"]},
         "Runtime": "nodejs12.x",
