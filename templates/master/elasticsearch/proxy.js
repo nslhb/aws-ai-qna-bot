@@ -15,6 +15,8 @@ module.exports={
                 CUSTOM_SETTINGS_PARAM:{"Ref":"CustomQnABotSettings"},
             }
         },
+        "Layers":[{"Ref":"AwsSdkLayerLambdaLayer"},
+                  {"Ref":"CommonModulesLambdaLayer"}],
         "Handler": "index.resource",
         "MemorySize": "1408",
         "Role": {"Fn::GetAtt": ["ESProxyLambdaRole","Arn"]},

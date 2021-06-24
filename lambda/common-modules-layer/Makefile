@@ -5,7 +5,7 @@ RESOURCES := $(shell  find . | grep -v node_modules | grep -v test )
 
 $(DST): $(RESOURCES) 
 	echo "Building $(NAME)"; 
-	npm install 
+	npm install  -production
 	rm -r ./nodejs || True
 	mkdir ./nodejs
 	mv node_modules ./nodejs/node_modules 

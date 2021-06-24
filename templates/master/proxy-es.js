@@ -25,6 +25,8 @@ module.exports={
             "S3Key": {"Fn::Sub":"${BootstrapPrefix}/lambda/proxy-es.zip"},
             "S3ObjectVersion":{"Ref":"ESProxyCodeVersion"}
         },
+        "Layers":[{"Ref":"AwsSdkLayerLambdaLayer"},
+                  {"Ref":"CommonModulesLambdaLayer"}],
         "Environment": {
           "Variables": {
             ES_INDEX:{"Fn::GetAtt":["Var","QnaIndex"]},
@@ -62,12 +64,16 @@ module.exports={
             "S3Key": {"Fn::Sub":"${BootstrapPrefix}/lambda/proxy-es.zip"},
             "S3ObjectVersion":{"Ref":"ESProxyCodeVersion"}
         },
+        "Layers":[{"Ref":"AwsSdkLayerLambdaLayer"},
+                  {"Ref":"CommonModulesLambdaLayer"}],
         "Environment": {
           "Variables": {
             ES_INDEX:{"Fn::GetAtt":["Var","QnaIndex"]},
             ES_ADDRESS:{"Fn::GetAtt":["ESVar","ESAddress"]}
           }
         },
+        "Layers":[{"Ref":"AwsSdkLayerLambdaLayer"},
+                  {"Ref":"CommonModulesLambdaLayer"}],
         "Handler": "index.qid",
         "MemorySize": "1408",
         "Role": {"Fn::GetAtt": ["ESProxyLambdaRole","Arn"]},
@@ -97,6 +103,8 @@ module.exports={
             "S3Key": {"Fn::Sub":"${BootstrapPrefix}/lambda/proxy-es.zip"},
             "S3ObjectVersion":{"Ref":"ESProxyCodeVersion"}
         },
+        "Layers":[{"Ref":"AwsSdkLayerLambdaLayer"},
+        {"Ref":"CommonModulesLambdaLayer"}],
         "Environment": {
           "Variables": {
             ES_INDEX:{"Fn::GetAtt":["Var","QnaIndex"]},
@@ -155,6 +163,8 @@ module.exports={
             "S3Key": {"Fn::Sub":"${BootstrapPrefix}/lambda/proxy-es.zip"},
             "S3ObjectVersion":{"Ref":"ESProxyCodeVersion"}
         },
+        "Layers":[{"Ref":"AwsSdkLayerLambdaLayer"},
+                  {"Ref":"CommonModulesLambdaLayer"}],
         "Environment": {
           "Variables": {
             "FIREHOSE_NAME":{"Ref":"GeneralFirehose"},
@@ -195,6 +205,8 @@ module.exports={
               CUSTOM_SETTINGS_PARAM:{"Ref":"CustomQnABotSettings"},
           }, examples)
         },
+        "Layers":[{"Ref":"AwsSdkLayerLambdaLayer"},
+                  {"Ref":"CommonModulesLambdaLayer"}],
         "Handler": "index.query",
         "MemorySize": "1408",
         "Role": {"Fn::GetAtt": ["ESProxyLambdaRole","Arn"]},
@@ -224,6 +236,8 @@ module.exports={
             "S3Key": {"Fn::Sub":"${BootstrapPrefix}/lambda/proxy-es.zip"},
             "S3ObjectVersion":{"Ref":"ESProxyCodeVersion"}
         },
+        "Layers":[{"Ref":"AwsSdkLayerLambdaLayer"},
+        {"Ref":"CommonModulesLambdaLayer"}],
         "Environment": {
           "Variables": {
             ES_TYPE:{"Fn::GetAtt":["Var","QnAType"]},
