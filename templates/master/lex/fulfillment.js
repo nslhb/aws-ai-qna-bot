@@ -68,7 +68,8 @@ module.exports = {
         "Fn::If": [ "XRAYEnabled", {"Mode": "Active"},
           {"Ref" : "AWS::NoValue"} ]
       },
-      "Layers":[{"Ref":"AwsSdkLayerLambdaLayer"}],
+      "Layers":[{"Ref":"AwsSdkLayerLambdaLayer"},
+                {"Ref":"CommonModulesLambdaLayer"}],
       "Tags": [{
         Key: "Type",
         Value: "Fulfillment"
