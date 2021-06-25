@@ -11,6 +11,20 @@ module.exports = {
   CommonModulesLambdaLayer: {
     Type: "AWS::Lambda::LayerVersion",
     Properties: {
+      LayerName:{
+        "Fn::Join": [
+          "-",
+          [
+            "CommonModules",
+            {
+              "Fn::Select": [
+                2,
+                {"Fn::Split": ["-", {Ref: "DefaultQnABotSettings"}]},
+              ],
+            },
+          ],
+        ],
+      },
       Content: {
         S3Bucket: { Ref: "BootstrapBucket" },
         S3Key: {
@@ -38,6 +52,20 @@ module.exports = {
         S3Key: { "Fn::Sub": "${BootstrapPrefix}/lambda/aws-sdk-layer.zip" },
         S3ObjectVersion: { Ref: "AwsSdkLayerCodeVersion" },
       },
+      LayerName:{
+        "Fn::Join": [
+          "-",
+          [
+            "AwsSdk",
+            {
+              "Fn::Select": [
+                2,
+                {"Fn::Split": ["-", {Ref: "DefaultQnABotSettings"}]},
+              ],
+            },
+          ],
+        ],
+      },
       CompatibleRuntimes: ["nodejs12.x"],
     },
   },
@@ -53,6 +81,20 @@ module.exports = {
   CfnLambdaLayer: {
     Type: "AWS::Lambda::LayerVersion",
     Properties: {
+      LayerName:{
+        "Fn::Join": [
+          "-",
+          [
+            "CfnLambdaModule",
+            {
+              "Fn::Select": [
+                2,
+                {"Fn::Split": ["-", {Ref: "DefaultQnABotSettings"}]},
+              ],
+            },
+          ],
+        ],
+      },
       Content: {
         S3Bucket: { Ref: "BootstrapBucket" },
         S3Key: { "Fn::Sub": "${BootstrapPrefix}/lambda/cfn-lambda-layer.zip" },
@@ -73,6 +115,20 @@ module.exports = {
   EsProxyLambdaLayer: {
     Type: "AWS::Lambda::LayerVersion",
     Properties: {
+      LayerName:{
+        "Fn::Join": [
+          "-",
+          [
+            "EsProxy",
+            {
+              "Fn::Select": [
+                2,
+                {"Fn::Split": ["-", {Ref: "DefaultQnABotSettings"}]},
+              ],
+            },
+          ],
+        ],
+      },
       Content: {
         S3Bucket: { Ref: "BootstrapBucket" },
         S3Key: { "Fn::Sub": "${BootstrapPrefix}/lambda/es-proxy-layer.zip" },
