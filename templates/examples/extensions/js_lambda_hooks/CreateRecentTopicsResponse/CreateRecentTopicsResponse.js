@@ -1,6 +1,7 @@
 const _ = require("lodash");
 exports.handler = async function(event, context) {
   console.log(event);
+  //Retrieve the args passed in via the Content Designer
   var args = _.get(event, "res.result.args");
   var start = 0;
   var end = 3;
@@ -9,12 +10,15 @@ exports.handler = async function(event, context) {
     start = args.start != undefined ? args.start : start;
     end = args.end != undefined ? args.end : end;
   }
+
+  //Initialize the response card object in the response
   _.set(event, "res.card", {
     title: "Recent Topics",
     send: true,
     buttons: _.get(event, "res.card.buttons", []),
   });
 
+  //Retrieve the settings from the request object
   var settings = _.get(event, "req._settings", {});
   var topicMap = {},
     topicKey;
@@ -26,6 +30,9 @@ exports.handler = async function(event, context) {
     }
   }
 
+  //Retrieve the "recent topics" from the userInfo object.  
+  //All properties stored in the DynamoDB table for a user will be part
+  //of the res._userInfo object
   var userTopics = event.res._userInfo.recentTopics.sort((t1, t2) => {
     if (t1.dateTime == t2.dateTime) {
       return 0;
@@ -46,6 +53,8 @@ exports.handler = async function(event, context) {
           " is not defined properly.  The format should be <description>::<QID>. Using the description as the value."
       );
     }
+
+    //Add the buttons to the response object
     event.res.card.buttons.push({
       text: description,
       value: "qid::" + qid,
