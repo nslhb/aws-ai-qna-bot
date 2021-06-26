@@ -1,5 +1,6 @@
 const _ = require("lodash");
 exports.handler = async function(event, context) {
+  //
   console.log(event);
   //Retrieve the args passed in via the Content Designer
   var args = _.get(event, "res.result.args");
@@ -10,12 +11,13 @@ exports.handler = async function(event, context) {
     start = args.start != undefined ? args.start : start;
     end = args.end != undefined ? args.end : end;
   }
-
+  
+  var existingButtons = _.get(event, "res.card.buttons", [])
   //Initialize the response card object in the response
   _.set(event, "res.card", {
     title: "Recent Topics",
     send: true,
-    buttons: _.get(event, "res.card.buttons", []),
+    buttons: [],
   });
 
   //Retrieve the settings from the request object
@@ -59,6 +61,8 @@ exports.handler = async function(event, context) {
       text: description,
       value: "qid::" + qid,
     });
+
   }
+  event.res.card.buttons = event.res.card.buttons.concat(existingButtons)
   return event;
 };
