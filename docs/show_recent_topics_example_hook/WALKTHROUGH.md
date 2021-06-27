@@ -1,4 +1,4 @@
-#Create Recent Topics Response Walkthrough
+# Create Recent Topics Response Walkthrough
 
 The CreateRecentTopicsResponse Lambda hook demonstrates how you can extend QnABot with custom functionality.
 
