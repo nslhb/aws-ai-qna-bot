@@ -8,7 +8,7 @@ The Lambda hook allows you to add buttons to a question with the recent topics a
 
 Choose *Import* from the Tools menu.
 
-![Import Tool](./Impport.png)
+![Import Tool](./Import.png)
 
 Load the *RecentTopicsDemo* question bank.
 
