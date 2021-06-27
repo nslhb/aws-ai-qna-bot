@@ -35,8 +35,8 @@ The configuration for the buttons is done by adding custom settings in the Setti
 
 Notice the format of a setting that maps a topic to a button is:
 
--  topic::<topic> -- the name of the topic for QnABot to remember.
-- <display text>::<QID> -- the display text of the button and the ID of the question to be asked when the button is selected separated by two colons (::)
+- topic::\<topic\> -- the name of the topic for QnABot to remember.
+- \<display text\>::\<QID\> -- the display text of the button and the ID of the question to be asked when the button is selected separated by two colons (::)
 
 ## Configuring the Lambda hook
 
@@ -78,6 +78,6 @@ Let's add another question.
 
 - Finally, you will need to add a custom setting.
   - Click "ADD NEW SETTING"
-  - Click "UPDATE"
+  - Click "Save"
 
 ![Add New Setting](./add_new_setting.png)
