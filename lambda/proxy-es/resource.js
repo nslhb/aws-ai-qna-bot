@@ -1,1 +1,1 @@
-exports.handler=require('./lib/cfn').resource
+exports.handler=require('/opt/lib/cfn').resource
