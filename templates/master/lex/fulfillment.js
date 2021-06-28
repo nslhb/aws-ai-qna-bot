@@ -17,7 +17,10 @@ module.exports = {
     "Type": "AWS::Lambda::Permission",
     "Properties": {
       "Action": "lambda:InvokeFunction",
-      "FunctionName": { "Fn::GetAtt": ["FulfillmentLambda", "Arn"] },
+      "FunctionName": {  "Fn::Join": [ ":", [
+        {"Fn::GetAtt":["FulfillmentLambda","Arn"]},
+        "live"
+      ]]},
       "Principal": "alexa-appkit.amazon.com"
     }
   },
@@ -72,6 +75,23 @@ module.exports = {
         Key: "Type",
         Value: "Fulfillment"
       }]
+    }    
+  },
+  "FulfillmentLambdaVersion": {
+    "Type" : "AWS::Lambda::Version",
+    "DependsOn":"FulfillmentLambda",
+    "Properties" : { 
+      "FunctionName": {"Fn::GetAtt":["FulfillmentLambda","Arn"]},
+      "Description": "v1"
+    }
+  },
+  "FulfillmentLambdaAlias": {
+    "Type" : "AWS::Lambda::Alias",
+    "DependsOn":"FulfillmentLambdaVersion",
+    "Properties" : {
+      "FunctionName": {"Fn::GetAtt":["FulfillmentLambda","Arn"]},
+      "FunctionVersion": 1,
+      "Name": "live",
     }
   },
   "InvokePolicy": {
