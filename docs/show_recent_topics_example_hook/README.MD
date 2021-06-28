@@ -3,11 +3,11 @@
 As of version 4.8, the CreateRecentTopicResponse Lambda hook and related resources have been included to demonstrate how to extend QnABot with a custom Lambda hook
 in Javascript.
 
-Please read the [the README under the extensions folder](./templates/examples/extensions/README.md) for more information. 
+Please read the [the README under the extensions folder](./templates/examples/extensions/README.md) for more information.
 
 ## CreateRecentTopicsResponse Lambda Hook
 
-The CreateRecentTopicsResponse Lambda hook is located in the [extensions folder](templates/examples/extensions/js_lambda_hooks/CreateRecentTopicsResponse/CreateRecentTopicsResponse.js). 
+The CreateRecentTopicsResponse Lambda hook is located in the [extensions folder](templates/examples/extensions/js_lambda_hooks/CreateRecentTopicsResponse/CreateRecentTopicsResponse.js).
 
 It demonstrates the following:
 
@@ -27,7 +27,7 @@ and a corresponding .txt file containing a description.
 
 You can add settings specific to your custom Lambda Hook.
 
-Click on add settings. 
+Click on add settings.
 
 ![add settings](./add_settings.jpg)
 
@@ -35,5 +35,5 @@ And then add your custom setting name and value.
 
 ![add settings](./add_settings_dialog.jpg)
 
-You can also import and export your custom settings. QnABot comes with the corresponding [custom settings](./recent_topics_settings.json) 
-for the Recent Topics Demonstration question bank. 
+You can also import and export your custom settings. QnABot comes with the corresponding [custom settings](./recent_topics_settings.json)
+for the Recent Topics Demonstration question bank.

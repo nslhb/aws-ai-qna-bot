@@ -22,10 +22,10 @@ QnABot stores the topics of questions answered in a DynamoDB table per user.
 
 ## Importing custom settings
 
-QnABot needs three pieces of information to display the buttons - the topic, the text that should be displayed on the button and the question 
+QnABot needs three pieces of information to display the buttons - the topic, the text that should be displayed on the button and the question
 that should be asked based on the button selected.
 
-The configuration for the buttons is done by adding custom settings in the Setting window. 
+The configuration for the buttons is done by adding custom settings in the Setting window.
 
 - Download the [recent topics settings](./recent_topics_settings.json) json file from the QnABot repository.
 - Go to the Settings screen, choose "Import Settings" and import the recent_topics_settings.json file.
@@ -50,7 +50,7 @@ Edit the *PreviousTopics* question and expand the *Advanced* section.
 - Under *Lex Buttons* a button with the text "Ask Another Question" will always be displayed.  If chosen, the answer for the question with an ID of General.001 will be returned to the user.
 - The Lambda hook (QNA:EXTCreateRecentTopicsResponse) will be called with the parameters specified under *Lambda Hook Arguments*. This tells the Lambda hook to return the most recent topic (*"start":"0"*) and return at most five (*"end":5*) buttons.
 
-## Adding a topic to be recalled.
+## Adding a topic to be recalled
 
 Let's add another question.
 
