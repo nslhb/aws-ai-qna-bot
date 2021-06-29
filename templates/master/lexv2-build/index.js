@@ -8,10 +8,9 @@ module.exports={
         "S3ObjectVersion":{"Ref":"Lexv2BotCodeVersion"}
     },{
         STACKNAME:{"Ref":"AWS::StackName"},
-        FULFILLMENT_LAMBDA_ARN:{  "Fn::Join": [ ":", [
-            {"Fn::GetAtt":["FulfillmentLambda","Arn"]},
-            "live"
-          ]]},
+        FULFILLMENT_LAMBDA_ARN: {  
+            "Fn::Join": [ ":", [{"Fn::GetAtt":["FulfillmentLambda","Arn"]}, "live"]]
+        },
         LOCALES:{"Ref":"LexV2BotLocaleIds"},
         PYTHONPATH:"/var/task/py_modules:/var/runtime:/opt/python"
     },"python3.7"),

@@ -15,6 +15,7 @@ var responsebots = _.fromPairs(require('../../examples/examples/responsebots')
 module.exports = {
   "Alexa": {
     "Type": "AWS::Lambda::Permission",
+    "DependsOn": "FulfillmentLambdaAlias",
     "Properties": {
       "Action": "lambda:InvokeFunction",
       "FunctionName": {  "Fn::Join": [ ":", [
@@ -118,6 +119,23 @@ module.exports = {
         }]
       },
       "Roles": [{ "Ref": "FulfillmentLambdaRole" }]
+    }
+  },
+  "FulfillmentLambdaVersion": {
+    "Type" : "AWS::Lambda::Version",
+    "DependsOn":"FulfillmentLambda",
+    "Properties" : { 
+      "FunctionName": {"Fn::GetAtt":["FulfillmentLambda","Arn"]},
+      "Description": "v1"
+    }
+  },
+  "FulfillmentLambdaAlias": {
+    "Type" : "AWS::Lambda::Alias",
+    "DependsOn":"FulfillmentLambdaVersion",
+    "Properties" : {
+      "FunctionName": {"Fn::GetAtt":["FulfillmentLambda","Arn"]},
+      "FunctionVersion": "1",
+      "Name": "live",
     }
   },
   "LexBotPolicy": {

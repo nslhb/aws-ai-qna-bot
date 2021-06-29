@@ -6,13 +6,14 @@ const qnabotversion = process.env.npm_package_version + " - v1";
 module.exports={
     "QNAInvokePermission": {
       "Type": "AWS::Lambda::Permission",
+      "DependsOn": "FulfillmentLambdaAlias",
       "Properties": {
         "Action": "lambda:InvokeFunction",
         "FunctionName": {  "Fn::Join": [ ":", [
-            {"Fn::GetAtt":["FulfillmentLambda","Arn"]}, 
-            "live"
-          ]]},
-        "Principal": "lex.amazonaws.com"
+          {"Fn::GetAtt":["FulfillmentLambda","Arn"]}, 
+          "live"
+        ]]},
+      "Principal": "lex.amazonaws.com"
       }
     },
     "SlotType":{
